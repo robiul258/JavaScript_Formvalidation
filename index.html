@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>JavaScript : : Form Validation</title>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link type="text/css" rel="stylesheet" href="style.css"/>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+      <!-- Optional theme -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<style>
+		body{
+margin:0 auto;
+padding:0 auto;
+color:#777;
+}
+.head{
+color:#777;
+font-size:30px;
+margin-top:0px;
+font-style:Verdana;
+}
+.text{
+color:#777;
+font-size:15px;
+font-style:Verdana;
+ }
+span{
+color:red;
+font-size:16px;
+}
+
+.regi_form{
+	padding: 20px 20px;
+    text-align:left;
+    width: 100%;
+	background-color:#efefef;
+	border-radius: 0 0 8px 8px;
+}
+.regi_form input[type="text"] {
+  border: medium none;
+  border-radius: 5px;
+  font-size:16px;
+  color: #000;
+  height: 30px;
+  width: 100%;
+}
+.regi_form input[name="username"] {
+  border: medium none;
+  border-radius: 5px;
+  font-size:16px;
+  color: #000;
+  height: 30px;
+  width: 100%;
+}
+.regi_form input[name="fname"] {
+  border: medium none;
+  border-radius: 5px;
+  font-size:16px;
+  color: #000;
+  height: 30px;
+  width: 100%;
+}
+.regi_form input[name="lname"] {
+  border: medium none;
+  border-radius: 5px;
+  font-size:16px;
+  color: #000;
+  height: 30px;
+  width: 100%;
+}
+.regi_form input[type="email"]{
+	width: 100%;
+	height: 30px;
+	color: #000;
+	border: none;
+	border-radius: 5px;
+	font-size:16px;
+}
+
+.regi_form input[type="password"]{
+	width: 100%;
+	height: 30px;
+	color: #000;
+	border: none;
+	border-radius: 5px;
+	font-size:16px;
+
+}
+.regi_form input[name="con_password"]{
+	width: 100%;
+	height: 30px;
+	color: #000;
+	border: none;
+	border-radius: 5px;
+	font-size:16px;
+}
+.regi_form input[type="submit"]{
+	width: 100%;
+	background-color:#008FB2;
+	height: 35px;
+	color: #CCE9F0;
+	border: none;
+	border-radius: 5px;
+	font-family: Verdana;
+	margin-top: 40px;
+	font-size:16px;
+}
+
+	</style>
+   </head>
+   <body>
+      
+    <div class="container">
+      <div class="row col-xs-12 col-sm-6 col-sm-offset-3 form"">
+	  <div class="regi_form">
+        <h1 class="head">Create User Account</h1>
+       
+      <form name="form" action="#">
+          
+         <div class="form-group" id="group1">
+            <h4 class="text">User Name<span>*</span></h4>
+            <input type="text" name="username" class="input_box form-control" id="username" onblur="validateun();"/>
+            <span id="erruname"></span>
+         </div>
+         <div class="form-group" id="group2">
+            <h4 class="text">Password<span>*</span></h4>
+            <input type="password" name="password" class="input_box form-control" id="password" onblur="validatepass()"/>
+            <span id="errpass" ></span>
+         </div>
+         <div class="form-group" id="group3">
+            <h4 class="text">Confirm Password<span>*</span></h4>
+            <input type="password" name="conpassword" class="input_box form-control" id="repassword" onblur="validaterepass()"/>
+            <span id="errrepass" ></span>
+         </div>
+         <div class="form-group" id="group4">
+            <h4 class="text">First Name<span>*</span></h4>
+            <input type="text" name="fname" class="input_box form-control" id="fname" onblur="validatefn()"/>
+            <span id="errfname" ></span>
+         </div>
+         <div class="form-group" id="group5">
+            <h4 class="text">Last Name<span>*</span></h4>
+            <input type="text" name="lname" class="input_box form-control" id="lname" onblur="validateln()"/>
+            <span id="errlname" ></span>
+         </div>
+         <div class="form-group" id="group6">
+            <h4 class="text">Email Address<span>*</span></h4>
+            <input name="mail" type="email" class="input_box form-control" id="email" onblur="validateemail()"/>
+            <span id="errmail"></span>
+         </div>
+         <div> <input type="submit" value="Create Account" onclick="confirmOnSubmit()"></div>
+        </form>
+       </div>
+	 </div>
+	</div>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+	
+		function validateun() {
+
+            var un = document.form.username.value;
+
+            if (un == null || un == "") {
+                document.getElementById("erruname").innerHTML = "<h5>The Username field is required</h5>";
+
+
+            } else document.getElementById("erruname").innerHTML = "";
+
+            var inputVal = document.getElementById("username");
+            if (inputVal.value == "") {
+                inputVal.style.backgroundColor = "#FFEEEC";
+            } else {
+                inputVal.style.backgroundColor = "";
+            }
+        }
+
+        function validatepass() {
+
+
+            var pas = document.form.password.value;
+
+            if (pas == null || pas == " ") {
+                document.getElementById("errpass").innerHTML = "<h5>The Password field is required</h5>";
+            } else document.getElementById("errpass").innerHTML = "";
+            
+            var inputVal = document.getElementById("password");
+            if (inputVal.value == "") {
+                inputVal.style.backgroundColor = "#FFEEEC";
+            } else {
+                inputVal.style.backgroundColor = "";
+            }
+        }
+
+        function validaterepass() {
+            //var username = document.form.username.value;
+
+            var repas = document.form.repassword.value;
+
+            if (repas == null || repas == "") {
+                document.getElementById("errrepass").innerHTML = "<h5>The ConfirmPassword field is required</h5>";
+            } else document.getElementById("errrepass").innerHTML = "";
+            var inputVal = document.getElementById("repassword");
+            if (inputVal.value == "") {
+                inputVal.style.backgroundColor = "#FFEEEC";
+            } else {
+                inputVal.style.backgroundColor = "";
+            }
+        }
+
+        function validatefn() {
+
+
+            var fn = document.form.fname.value;
+
+            if (fn == null || fn == "") {
+                document.getElementById("errfname").innerHTML = "<h5>The FirstName field is required</h5>";
+            } else document.getElementById("errfname").innerHTML = "";
+            var inputVal = document.getElementById("fname");
+            if (inputVal.value == "") {
+                inputVal.style.backgroundColor = "#EADEB3";
+            } else {
+                inputVal.style.backgroundColor = "";
+            }
+        }
+
+        function validateln() {
+
+
+            var ln = document.form.lname.value;
+
+            if (ln == null || ln == "") {
+                document.getElementById("errlname").innerHTML = "<h5>The LastName field is required</h5>";
+            } else document.getElementById("errlname").innerHTML = "";
+            var inputVal = document.getElementById("lname");
+            if (inputVal.value == "") {
+                inputVal.style.backgroundColor = "#FFEEEC";
+            } else {
+                inputVal.style.backgroundColor = "";
+            }
+        }
+
+        function validateemail() {
+
+
+            var ln = document.form.mail.value;
+
+            if (ln == null || ln == "") {
+                document.getElementById("errmail").innerHTML = "<h5>The Email field is required</h5>";
+            } else document.getElementById("errmail").innerHTML = "";
+            var inputVal = document.getElementById("email");
+            if (inputVal.value == "") {
+                inputVal.style.backgroundColor = "#FFEEEC";
+            } else {
+                inputVal.style.backgroundColor = "";
+            }
+        }
+		
+	</script>
+   </body>
+</html>
